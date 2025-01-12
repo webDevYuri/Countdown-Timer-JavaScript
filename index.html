@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        *, *::after, *::before {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: aliceblue;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            background-color: white;
+            padding: 50px;
+            border-radius: 20px;
+
+        }
+
+        .input {
+            display: flex;
+            gap: 50px
+        }
+
+        #hour, #minute, #second, #day {
+            border: none;
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            height: 200px;
+            width: 200px;
+            color: rgb(39, 39, 39);
+            font-weight: bold;
+            border-radius: 50%;
+        }
+
+        h1 {
+            font-weight: bolder;
+            margin-bottom: 50px;
+            color: rgb(29, 29, 29);
+            font-size: 40px;
+        }
+
+        .circle-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        span {
+            font-weight: 800;
+            color: rgb(255, 255, 255);
+            text-transform: uppercase;
+            font-size: 13px;
+            padding: 5px 10px;
+            background-color: green;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="container-header">
+            <h1>2026 NEW YEAR COUNTDOWN</h1>
+        </div>
+        <div class="input">
+            <div class="circle-container">
+                <div id="day"></div>
+                <span>Days</span>
+            </div>
+            <div class="circle-container">
+                <div id="hour"></div>
+                <span>Hours</span>
+            </div>
+            <div class="circle-container">
+                <div id="minute"></div>
+                <span>Minutes</span>
+            </div>
+            <div class="circle-container">
+                <div id="second"></div>
+                <span>Seconds</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get references to the HTML elements where the countdown values will be displayed
+        let day = document.getElementById('day');
+        let hour = document.getElementById('hour');
+        let minute = document.getElementById('minute');
+        let second = document.getElementById('second');
+    
+        // Set the target date and time for the countdown
+        var countDownDate = new Date("2026-01-01 01:04:03").getTime();
+    
+        // Set an interval to update the countdown every second
+        var x = setInterval(function() {
+            // Get the current date and time in milliseconds
+            var now = new Date().getTime();
+    
+            // Calculate the remaining time by subtracting the current time from the target time
+            var distance = countDownDate - now;
+    
+            // Convert the remaining time into days, hours, minutes, and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24)); // Calculate days
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); // Calculate hours
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)); // Calculate minutes
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000); // Calculate seconds
+    
+            // Update the HTML elements with the calculated values
+            day.innerText = days;
+            hour.innerText = hours;
+            minute.innerText = minutes;
+            second.innerText = seconds;
+    
+            // Check if the countdown has finished (distance < 0)
+            if (distance < 0) {
+                // Stop the interval once the countdown is complete
+                clearInterval(x);
+                
+                // Display an alert message to indicate the countdown is over
+                window.alert("Countdown already finished.");
+            }
+        }, 1000); // Repeat the function every 1000 milliseconds (1 second)
+    </script>    
+</body>
+</html>
